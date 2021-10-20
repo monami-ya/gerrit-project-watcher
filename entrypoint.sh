@@ -32,6 +32,7 @@ GIT_BACKEND_URL="${GIT_BACKEND_URL_SCHEME}://${GIT_BACKEND_ADMIN_USER}:${GIT_BAC
 
 while read repo; do
     curl "${GIT_BACKEND_URL}/${repo}" 2> /dev/null
+    echo "${repo} $?"
 done < <(curl -sL ${GERRIT_MASTER_URL} | \
     tail -c +6 | \
     jq -r '.|to_entries|map(select(.value.state == "ACTIVE"))|.[].key')
