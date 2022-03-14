@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -eu
+set +x
+
 if [[ $@ != "" ]]; then
     # For debug.
     exec $@
